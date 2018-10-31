@@ -1,0 +1,87 @@
+{
+  "Agricultural (locus) Name": [
+    "AN",
+    "",
+    "PROPN"
+  ],
+  "Celestial Name": [
+    "CN",
+    "",
+    "PROPN"
+  ],
+  "Divine Name": [
+    "DN",
+    "DN",
+    "PROPN"
+  ],
+  "Ethnos Name": [
+    "EN",
+    "EN",
+    "PROPN"
+  ],
+  "Field Name": [
+    "FN",
+    "PROPN",
+    ""
+  ],
+  "Geographical Name": [
+    "GN",
+    "GN",
+    "PROPN"
+  ],
+  "Line Name (ancestral clan)": [
+    "LN",
+    "",
+    "PROPN"
+  ],
+  "Month Name": [
+    "MN",
+    "MN",
+    "PROPN"
+  ],
+  "Object Name": [
+    "ON",
+    "",
+    "PROPN"
+  ],
+  "Other Name": [
+    "",
+    "ON",
+    "PROPN"
+  ],
+  "Personal Name": [
+    "PN",
+    "PN",
+    "PROPN"
+  ],
+  "Quarter Name (city area)": [
+    "QN",
+    "",
+    "PROPN"
+  ],
+  "Royal Name": [
+    "RN",
+    "RN",
+    "PROPN"
+  ],
+  "Settlement Name": [
+    "SN",
+    "SN",
+    "PROPN"
+  ],
+  "Temple Name": [
+    "TN",
+    "TN",
+    "PROPN"
+  ],
+  "Watercourse Name": [
+    "WN",
+    "WN",
+    "PROPN"
+  ],
+  "Year Name": [
+    "YN",
+    "",
+    "PROPN"
+  ]
+}

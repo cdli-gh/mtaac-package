@@ -1,0 +1,48 @@
+[
+  {
+    "abbreviations": [
+      "NEG"
+    ],
+    "morphemes": [
+      "nu"
+    ],
+    "name": "negative prefix",
+    "slot": "NV11"
+  },
+  {
+    "abbreviations": [
+      "STEM",
+      "STEM-PF",
+      "STEM-PL",
+      "STEM-RDP"
+    ],
+    "morphemes": [
+      "STEM",
+      "STEM-PF",
+      "STEM-PL",
+      "STEM-RDP"
+    ],
+    "name": "stem",
+    "slot": "NV2"
+  },
+  {
+    "abbreviations": [
+      "PF"
+    ],
+    "morphemes": [
+      "ed"
+    ],
+    "name": "present-future marker",
+    "slot": "NV3"
+  },
+  {
+    "abbreviations": [
+      "SUB"
+    ],
+    "morphemes": [
+      "'a"
+    ],
+    "name": "subordinator",
+    "slot": "NV4"
+  }
+]

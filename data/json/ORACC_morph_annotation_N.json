@@ -1,0 +1,118 @@
+[
+  {
+    "abbreviations": [],
+    "morphemes": [],
+    "name": "Head",
+    "slot": "N1"
+  },
+  {
+    "abbreviations": [
+      "DEM1"
+    ],
+    "morphemes": [
+      "e"
+    ],
+    "name": "Modifier",
+    "slot": "N2"
+  },
+  {
+    "abbreviations": [
+      "1-SG-POSS",
+      "2-SG-POSS",
+      "3-SG-H-POSS",
+      "3-SG-NH-POSS",
+      "DEM2",
+      "1-PL-POSS",
+      "2-PL-POSS",
+      "3-PL-POSS"
+    ],
+    "morphemes": [
+      "ju",
+      "zu",
+      "ani",
+      "bi",
+      "bi",
+      "me",
+      "zunenee",
+      "anenee"
+    ],
+    "name": "Possessor",
+    "slot": "N3"
+  },
+  {
+    "abbreviations": [
+      "PL",
+      "ORD",
+      "ORD"
+    ],
+    "morphemes": [
+      "enee",
+      "kamak",
+      "kama"
+    ],
+    "name": "Plural-marker or the ordinal number suffix",
+    "slot": "N4"
+  },
+  {
+    "abbreviations": [
+      "ABS",
+      "ERG",
+      "DAT-H",
+      "DAT-NH",
+      "COM",
+      "ABL",
+      "TERM",
+      "L1",
+      "L2-H",
+      "L2-NH",
+      "L3-H",
+      "L3-NH",
+      "GEN",
+      "EQU",
+      "L4",
+      "ADV"
+    ],
+    "morphemes": [
+      "\u00f8",
+      "e",
+      "ra",
+      "e",
+      "da",
+      "ta",
+      "ce",
+      "'a",
+      "ra",
+      "'a",
+      "ra",
+      "e",
+      "ak",
+      "gin",
+      "ne",
+      "ec"
+    ],
+    "name": "Case-marker",
+    "slot": "N5"
+  },
+  {
+    "abbreviations": [
+      "COP-1-SG",
+      "COP-2-SG",
+      "COP-3-SG",
+      "COP-1-PL",
+      "COP-2-PL",
+      "COP-3-PL",
+      "EXCEPT"
+    ],
+    "morphemes": [
+      "men",
+      "men",
+      "am",
+      "menden",
+      "menzen",
+      "mec",
+      "nanna"
+    ],
+    "name": "Copula",
+    "slot": "N6"
+  }
+]

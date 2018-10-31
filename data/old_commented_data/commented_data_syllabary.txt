@@ -1,0 +1,184 @@
+
+NOT_IN_SYLLABARY = \
+'''sagi: SILA3.ŠU.GABA
+cucin: MUŠ3.EREN
+nanna: ŠEŠ.KI
+siskur2: AMAR×ŠE.AMAR×ŠE
+ictaran: KA.DI
+ukken: URU×BAR
+cakkan: GIR3
+cunigin: ŠU.GAN2@t
+nerah: MUŠ
+mudra5: SIK2.BU
+kup4: KID
+nisaba: ŠE.NAGA
+acnan: ŠE.ŠE.NUN&NUN
+kikken2: HI×AŠ2.HI×AŠ2
+nijir: DUN3@g@g
+jectug2: GIŠ.TUG2.PI
+isimud4: PAP.IGI@g.NUN.ME
+dirig: SI.A
+cembizid: ŠIM
+jizzal: GIŠ.TUG2.PI.ŠIR.SILA3
+jicbun: KI.BI.GAR
+eridug: NUN
+jissu: GIŠ.MI
+cej3: A.AN
+jisal: GISAL
+mussa: SAL.UŠ.DI
+cej14: IM.A.AN
+jarza2: PA.LUGAL
+enkud: ZAG.HA
+isimud: PAP.IGI@g
+abula: KA2.GAL
+gudug: HI×NUN.ME
+nijin3: U.UD.KID
+tackarin: TUG2
+surungal: UD.NUN
+sizkur2: AMAR×ŠE.AMAR×ŠE
+cajan: U.GAN
+gur21: E.TUM
+gibil6: NE.GI
+jickim: IGI.DUB
+curuppag: SU.KUR.RU
+jarza: PA.AN
+cubtum6: KASKAL.LAGAB×U&LAGAB×U
+enegir: IM
+gira2: GIŠ.BAR
+jecpu2: ŠU.PAP.PAP
+cajar: KA×GAR
+pel: NE
+gilgamec2: GIŠ.NE@s.GA.ME.U.U.U
+cagina: GIR3.ARAD
+nergal: PIRIG.AB@g.GAL
+dur3: ANŠE.ARAD
+nijin: LAGAB.LAGAB
+cembi: ŠIM
+sajcu: U.SAG
+ganba: KI.LAM
+nijin6: AB×HA
+gilgamec3: GIŠ.NE.GA.MES
+karkara: IM
+ajrig: IGI.DUB
+aratta: LAM×KUR+RU
+ulutim: KI.KAL
+jectug3: GIŠ.PI.TUG2
+anzud2: AN.IM.MI
+ji25: DUGUD
+kucu4: SAG@g
+abgal2: NUN.ME.KA×GAN2@t
+si19: KA×UD
+cimacki: LU.SU
+ligima: IGI.TUR.TUR
+mitum: KU.AN
+cubtum5: KASKAL.LAGAB×U
+marduk: AMAR.UTU
+cubtum3: KASKAL.LAGAB
+imjaja3: AŠ2.AN
+gilgamec: GIŠ.DUN3@g.MAŠ
+kadra2: GAR.ŠA3
+tidnim: PIRIG.PIRIG
+tur8: BU
+cembi2: ŠIM
+cuba4: MUŠ3
+gakkul3: U.DIM
+mitum2: KU.IDIM
+kas7: ŠID
+bibad: ŠE.HU.TUR
+imjaja: AŠ2.A.AN
+algamec: UD.SAL.HUB2
+dagan: KI.URU×MIN
+jicbum: KI.BI.GAR
+cennux: ME.AD.KU3
+cimacgi: LU.SU
+cimacki: LU.SU
+cimacgi2: LU.SU.A
+emedu2: GA2×AN.A.TU
+enerux: AN.U
+gidlam4: SAL.UŠ
+gilgamesx: BIL3.GA.MES
+rigx: PA.MUNUS.HUB2.DU
+bil4: GIŠ.NE
+nijin5: LAL2.LAGAB
+zipah2: ŠU.BAD
+urub: URU×GAN2@t
+mete: TE.ME
+curmen: ŠU.ME.EREN
+nijar: U.UD.KID
+umma2: HI×DIŠ
+nindaba: PAD.AN.MUŠ3
+sab: PA.IB
+cet: ŠID
+': ALEPH
+durum: EZEN×BAD
+adad: IM
+geckim: IGI.DUB
+zigum: ZIKUM
+dimgal: DIMGUL
+nirah: MUŠ
+enegir3: EN.DIM2.GIG
+jizzal2: ŠIR@t.SILA3
+rab: RAB
+aski: AŠ.HI×DIŠ.GI4
+jecbun: KI.BI.GAR
+rig8: PA.HUB2
+rig9: HUB2.DU
+sala4: SILA3
+zabar3: KA×UD.BAR
+reb: KAL
+mara2: AMAR
+jir15: EŠ2
+unud: AB2.KU'''
+
+###PHONETIC
+#ALEPH in ši-te-ʾ-u₂, iš-te-ʾ-u₂)
+#ŠID in ep-šet
+
+CORRECT_READING_DICT = {
+  'rab3': ['rab', 'RAB'],
+  'im4': ['im6', 'DU'],
+  'asgi': ['aski', 'AŠ.HI×DIŠ.GI4'] #BORGER 102
+  }
+
+###PROBLEMATIC:
+#zikum s. MZL no. 757 (indistinguishable from ENGUR in NA).
+#for rab3 (Borger: just RAB, not LUGAL - different signs) see MZL no. 262
+#dimgal is not is MZL, but there is DIMGUL. It is unclear is that is the same.
+#asgi is missing in MZL, cf. aski: MZL no. 102
+
+SPECIAL_SIGNS_DICT = {
+  '1(barig)': 'DIŠ',
+  '2(barig)': 'NIGIDAMIN',
+  '3(barig)': 'NIGIDAEŠ',
+  '4(barig)': '4(DIŠ)',
+
+  "1(gec'u)": 'DIŠ', #?
+  "2(gec'u)": '2(GEŠU)',
+  "3(gec'u)": '3(GEŠU)',
+  "4(gec'u)": '4(GEŠU)',
+  "5(gec'u)": '5(GEŠU)',
+
+  "1(dic@t)": 'AŠ@z', #?
+  "2(dic@t)": '2(AŠ@t)', #?
+  "3(dic@t)": '3(AŠ@t)', #?
+
+  "2(dic@v)": '2(AŠ~a)', #? SAME VALUE ALSO FOR 2(AŠ~b)
+  "3(dic@v)": '3(AŠ~a)', #? SAME VALUE ALSO FOR 3(AŠ~b)
+  "4(dic@v)": '4(AŠ~a)', #? SAME VALUE ALSO FOR 4(AŠ~b)
+  "8(dic@v)": '8(AŠ)', #?
+
+  "3(ban2)": '3(BAN2)',
+
+  "1(bur'u)": 'BUR',
+  "2(bur'u)": '2(BURU)',
+  "3(bur'u)": '3(BURU)',
+  }
+
+### Placeholders:
+
+##n
+##n(bur3)
+##n(esze3)
+##n(iku)
+##n(ban2)
+##n(barig)

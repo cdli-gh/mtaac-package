@@ -1,0 +1,97 @@
+{
+  "adjective": [
+    "AJ",
+    "AJ",
+    "ADJ"
+  ],
+  "adverb": [
+    "AV",
+    "AV",
+    "ADV"
+  ],
+  "conjunction": [
+    "CNJ",
+    "C",
+    "CONJ"
+  ],
+  "demonstrative pronoun": [
+    "DP",
+    "",
+    ""
+  ],
+  "determinative pronoun": [
+    "DET",
+    "PD",
+    "DET"
+  ],
+  "indefinite pronoun": [
+    "XP",
+    "",
+    ""
+  ],
+  "independent/anaphoric pronoun": [
+    "IP",
+    "",
+    ""
+  ],
+  "interjection": [
+    "J",
+    "I",
+    "INTJ"
+  ],
+  "interrogative pronoun": [
+    "QP",
+    "",
+    ""
+  ],
+  "modal/negative/conditional particle": [
+    "MOD",
+    "",
+    ""
+  ],
+  "negator": [
+    "",
+    "NEG",
+    ""
+  ],
+  "noun": [
+    "N",
+    "N",
+    "NOUN"
+  ],
+  "number": [
+    "NU",
+    "NU",
+    "NUM"
+  ],
+  "possessive pronoun": [
+    "PP",
+    "",
+    ""
+  ],
+  "preposition/adposition": [
+    "PRP",
+    "",
+    "ADP"
+  ],
+  "reflexive/reciprocal pronoun": [
+    "RP",
+    "",
+    ""
+  ],
+  "relative pronoun": [
+    "REL",
+    "",
+    ""
+  ],
+  "subjunction": [
+    "SBJ",
+    "",
+    ""
+  ],
+  "verb": [
+    "V",
+    "V",
+    "VERB"
+  ]
+}

@@ -1,0 +1,71 @@
+Lemmatiser training+test
+
+fraction:154/10000
+
+count:1/10000
+cutoff:0 #rules:113 #same:2827 #ambiguous:0 0 0 #different:6665      29.782975       0.000000       0.000000       0.000000      70.217025 (amb 0 all 9492 amb%       0.000000)
+cutoff:1 #rules:47 #same:2705 #ambiguous:0 0 0 #different:6787      28.497682       0.000000       0.000000       0.000000      71.502318 (amb 0 all 9492 amb%       0.000000)
+cutoff:2 #rules:9 #same:1925 #ambiguous:0 0 0 #different:7567      20.280236       0.000000       0.000000       0.000000      79.719764 (amb 0 all 9492 amb%       0.000000)
+cutoff:3 #rules:2 #same:1561 #ambiguous:0 0 0 #different:7931      16.445428       0.000000       0.000000       0.000000      83.554572 (amb 0 all 9492 amb%       0.000000)
+cutoff:4 #rules:2 #same:1561 #ambiguous:0 0 0 #different:7931      16.445428       0.000000       0.000000       0.000000      83.554572 (amb 0 all 9492 amb%       0.000000)
+cutoff:5 #rules:1 #same:1372 #ambiguous:0 0 0 #different:8120      14.454277       0.000000       0.000000       0.000000      85.545723 (amb 0 all 9492 amb%       0.000000)
+
+fraction:308/10000
+
+count:1/10000
+cutoff:0 #rules:200 #same:3401 #ambiguous:0 0 0 #different:5943      36.397688       0.000000       0.000000       0.000000      63.602312 (amb 0 all 9344 amb%       0.000000)
+cutoff:1 #rules:98 #same:3150 #ambiguous:0 0 0 #different:6194      33.711473       0.000000       0.000000       0.000000      66.288527 (amb 0 all 9344 amb%       0.000000)
+cutoff:2 #rules:19 #same:2646 #ambiguous:0 0 0 #different:6698      28.317637       0.000000       0.000000       0.000000      71.682363 (amb 0 all 9344 amb%       0.000000)
+cutoff:3 #rules:13 #same:2492 #ambiguous:0 0 0 #different:6852      26.669521       0.000000       0.000000       0.000000      73.330479 (amb 0 all 9344 amb%       0.000000)
+cutoff:4 #rules:9 #same:2126 #ambiguous:0 0 0 #different:7218      22.752568       0.000000       0.000000       0.000000      77.247432 (amb 0 all 9344 amb%       0.000000)
+cutoff:5 #rules:6 #same:1918 #ambiguous:0 0 0 #different:7426      20.526541       0.000000       0.000000       0.000000      79.473459 (amb 0 all 9344 amb%       0.000000)
+
+fraction:616/10000
+
+count:1/10000
+cutoff:0 #rules:374 #same:3362 #ambiguous:0 0 0 #different:5685      37.161490       0.000000       0.000000       0.000000      62.838510 (amb 0 all 9047 amb%       0.000000)
+cutoff:1 #rules:170 #same:3233 #ambiguous:0 0 0 #different:5814      35.735603       0.000000       0.000000       0.000000      64.264397 (amb 0 all 9047 amb%       0.000000)
+cutoff:2 #rules:32 #same:3063 #ambiguous:0 0 0 #different:5984      33.856527       0.000000       0.000000       0.000000      66.143473 (amb 0 all 9047 amb%       0.000000)
+cutoff:3 #rules:23 #same:2961 #ambiguous:0 0 0 #different:6086      32.729081       0.000000       0.000000       0.000000      67.270919 (amb 0 all 9047 amb%       0.000000)
+cutoff:4 #rules:17 #same:2857 #ambiguous:0 0 0 #different:6190      31.579529       0.000000       0.000000       0.000000      68.420471 (amb 0 all 9047 amb%       0.000000)
+cutoff:5 #rules:16 #same:2846 #ambiguous:0 0 0 #different:6201      31.457942       0.000000       0.000000       0.000000      68.542058 (amb 0 all 9047 amb%       0.000000)
+
+fraction:1232/10000
+
+count:1/10000
+cutoff:0 #rules:684 #same:3644 #ambiguous:0 0 0 #different:4809      43.108955       0.000000       0.000000       0.000000      56.891045 (amb 1 all 8453 amb%       0.011830)
+cutoff:1 #rules:310 #same:3613 #ambiguous:0 0 0 #different:4840      42.742222       0.000000       0.000000       0.000000      57.257778 (amb 0 all 8453 amb%       0.000000)
+cutoff:2 #rules:69 #same:3292 #ambiguous:0 0 0 #different:5161      38.944753       0.000000       0.000000       0.000000      61.055247 (amb 0 all 8453 amb%       0.000000)
+cutoff:3 #rules:45 #same:3129 #ambiguous:0 0 0 #different:5324      37.016444       0.000000       0.000000       0.000000      62.983556 (amb 0 all 8453 amb%       0.000000)
+cutoff:4 #rules:33 #same:3006 #ambiguous:0 0 0 #different:5447      35.561339       0.000000       0.000000       0.000000      64.438661 (amb 0 all 8453 amb%       0.000000)
+cutoff:5 #rules:23 #same:2861 #ambiguous:0 0 0 #different:5592      33.845972       0.000000       0.000000       0.000000      66.154028 (amb 0 all 8453 amb%       0.000000)
+
+fraction:2464/10000
+
+count:1/10000
+cutoff:0 #rules:1325 #same:3305 #ambiguous:12 5 0 #different:3943      45.492085       0.165175       0.068823       0.000000      54.273916 (amb 46 all 7265 amb%       0.633173)
+cutoff:1 #rules:609 #same:3257 #ambiguous:8 8 0 #different:3992      44.831383       0.110117       0.110117       0.000000      54.948383 (amb 47 all 7265 amb%       0.646937)
+cutoff:2 #rules:125 #same:3063 #ambiguous:3 1 0 #different:4198      42.161046       0.041294       0.013765       0.000000      57.783895 (amb 14 all 7265 amb%       0.192705)
+cutoff:3 #rules:76 #same:2961 #ambiguous:3 1 0 #different:4300      40.757054       0.041294       0.013765       0.000000      59.187887 (amb 14 all 7265 amb%       0.192705)
+cutoff:4 #rules:60 #same:2876 #ambiguous:2 1 0 #different:4386      39.587061       0.027529       0.013765       0.000000      60.371645 (amb 14 all 7265 amb%       0.192705)
+cutoff:5 #rules:48 #same:2750 #ambiguous:2 1 0 #different:4512      37.852719       0.027529       0.013765       0.000000      62.105988 (amb 14 all 7265 amb%       0.192705)
+
+fraction:4928/10000
+
+count:1/10000
+cutoff:0 #rules:2550 #same:2285 #ambiguous:50 64 0 #different:2491      46.728016       1.022495       1.308793       0.000000      50.940695 (amb 204 all 4890 amb%       4.171779)
+cutoff:1 #rules:1170 #same:2285 #ambiguous:63 80 0 #different:2462      46.728016       1.288344       1.635992       0.000000      50.347648 (amb 254 all 4890 amb%       5.194274)
+cutoff:2 #rules:254 #same:2192 #ambiguous:54 63 0 #different:2581      44.826176       1.104294       1.288344       0.000000      52.781186 (amb 231 all 4890 amb%       4.723926)
+cutoff:3 #rules:145 #same:2063 #ambiguous:51 74 0 #different:2702      42.188139       1.042945       1.513292       0.000000      55.255624 (amb 276 all 4890 amb%       5.644172)
+cutoff:4 #rules:103 #same:2011 #ambiguous:49 56 0 #different:2774      41.124744       1.002045       1.145194       0.000000      56.728016 (amb 256 all 4890 amb%       5.235174)
+cutoff:5 #rules:76 #same:1955 #ambiguous:52 45 0 #different:2838      39.979550       1.063395       0.920245       0.000000      58.036810 (amb 217 all 4890 amb%       4.437628)
+
+fraction:9856/10000
+
+count:1/10000
+cutoff:0 #rules:6867 #same:66 #ambiguous:3 1 0 #different:69      47.482014       2.158273       0.719424       0.000000      49.640288 (amb 9 all 139 amb%       6.474820)
+cutoff:1 #rules:2199 #same:63 #ambiguous:2 4 0 #different:70      45.323741       1.438849       2.877698       0.000000      50.359712 (amb 13 all 139 amb%       9.352518)
+cutoff:2 #rules:476 #same:62 #ambiguous:1 4 0 #different:72      44.604317       0.719424       2.877698       0.000000      51.798561 (amb 11 all 139 amb%       7.913669)
+cutoff:3 #rules:305 #same:61 #ambiguous:1 1 0 #different:76      43.884892       0.719424       0.719424       0.000000      54.676259 (amb 9 all 139 amb%       6.474820)
+cutoff:4 #rules:228 #same:61 #ambiguous:2 1 0 #different:75      43.884892       1.438849       0.719424       0.000000      53.956835 (amb 11 all 139 amb%       7.913669)
+cutoff:5 #rules:188 #same:59 #ambiguous:3 1 0 #different:76      42.446043       2.158273       0.719424       0.000000      54.676259 (amb 14 all 139 amb%      10.071942)

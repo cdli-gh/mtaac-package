@@ -1,6 +1,23 @@
 import sys
 from setuptools import find_packages, setup
 
+##from mtaac_package.common_functions import common_functions
+##
+##def get_package_data_lst():
+##    cf = common_functions()
+##    package_data_lst = []
+##    setup_path = os.path.dirname(os.path.abspath(__file__))
+##    package_root = os.path.join(setup_path, 'mtaac_package')
+##    for p in ['data', 'CTSLemma']:
+##        p_path = os.path.join(package_root, p)
+##        print(p_path)
+##        package_data_lst+=[
+##            os.path.join(*f).replace(package_root, '').strip(r'\/')
+##            for f in cf.get_filepaths(p_path)]
+##    for p in package_data_lst:
+##        print(p)
+##    return package_data_lst
+
 def install_deps():
     """Reads requirements.txt and preprocess it
     to be feed into setuptools.
@@ -40,39 +57,43 @@ def install_deps():
             new_pkgs.append(resource.strip())
     return new_pkgs, links
 
-
 dependencies, dependency_links = install_deps()
 
 setup(
-    name='mtaac-package',
-    version='0.0.1',
-    url='https://github.com/cdli-gh/mtaac-package',
-    license='BSD',
-    author='Ilya Khait',
-    author_email='ekh.itd@gmail.com',
-    description='Reusable Python functions for MTAAC.',
-    long_description=__doc__,
-    packages=find_packages(exclude=['tests']),
+    name = 'mtaac-package',
+    version = '1.0.0',
+    url = 'https://github.com/cdli-gh/mtaac-package',
+    license = 'BSD',
+    author = 'Ilya Khait',
+    author_email = 'ekh.itd@gmail.com',
+    description = 'Reusable Python scripts for MTAAC.',
+    long_description = __doc__,
+    packages = find_packages(exclude=['tests']),
     package_data = {
-        'data': ['*'],
-        'mtaac_package': ['*'],
+        'mtaac_package': [
+            'data/*/*',
+            'data/*/*/*',
+            'CSTLemma/*/*',
+            'CSTLemma/*/*/*',
+            'CSTLemma/*/*/*/*',
+            'CSTLemma/*/*/*/*/*'],
     },
-    include_package_data=True,
-    zip_safe=False,
-    platforms='any',
-    install_requires=dependencies,
-    dependency_links=dependency_links,
-##    entry_points={
+    include_package_data = True,
+    zip_safe = False,
+    platforms = 'any',
+    install_requires = dependencies,
+    dependency_links = dependency_links,
+##    entry_points = {
 ##        'console_scripts': [
 ##            'atf2conll = atf2conll_convertor.cli:main',
 ##        ],
 ##    },
-    classifiers=[
+    classifiers = [
         # As from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-        'Development Status :: 1 - Planning',
+        #'Development Status :: 1 - Planning',
         # 'Development Status :: 2 - Pre-Alpha',
         # 'Development Status :: 3 - Alpha',
-        # 'Development Status :: 4 - Beta',
+        'Development Status :: 4 - Beta',
         # 'Development Status :: 5 - Production/Stable',
         # 'Development Status :: 6 - Mature',
         # 'Development Status :: 7 - Inactive',

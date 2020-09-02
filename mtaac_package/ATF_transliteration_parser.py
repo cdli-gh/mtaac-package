@@ -1,8 +1,8 @@
 import re
 from lxml import etree
-from mtaac_package.common_functions import *
-from mtaac_package.syllabary import syllabary
-from mtaac_package.morph_annotation import tags
+from .common_functions import *
+from .syllabary import syllabary
+from .morph_annotation import tags
        
 sylb = syllabary() 
 
@@ -30,16 +30,18 @@ numerals = ['barig', "gec'u", 'dic', 'dic@t', 'dic@v', 'ban2', "bur'u",
 re_num = re.compile(r'|'.join(numerals))
 remove_lst = ['…', '$)', '#', '$', '<', '>']
 
-class transliteration:
+class transliteration(common_functions):
   '''
   '''
     
-  def __init__(self, translit, base=False):
+  def __init__(self, translit, base=False, syllabary_check=True):
     '''
     Use base=True for (partly) normalized transcriptions.
     '''
     self.defective = False
     self.annotation = None
+    self.syllabary_check = syllabary_check
+    self.syl_dict_lst = []
     self.raw_translit = translit
     self.parse_translit(translit, base)
     if self.defective==True:
@@ -73,7 +75,7 @@ class transliteration:
         self.sign_list[i] = self.get_unicode_index(self.sign_list[i])
       i+=1
     if base!=True:
-      self.check_signs_in_syllabary()
+      self.signs_in_syllabary()
     self.set_normalizations()
 
   def defective_checks(self, translit):
@@ -126,10 +128,12 @@ class transliteration:
       i+=1
     return translit
 
-  def check_signs_in_syllabary(self):
+  def signs_in_syllabary(self):
     '''
     Check parsed signs against syllabary data.
     '''
+    if self.syllabary_check!=True:
+      return None
     s_dict_lst = []
     for s in self.sign_list:
       s_dict = None
@@ -147,12 +151,22 @@ class transliteration:
         if s_dict==None:
           print('No entry found for sign:', self.raw_translit, s)
       s_dict_lst+=[s_dict]
-    if None not in s_dict_lst:
-      sylb.check_sequence(s_dict_lst, self.sign_list)
+    self.syl_dict_lst = s_dict_lst
+
+  def get_unicode_str(self):
+    '''
+    Return the transliteration as str in cuneiform Unicode chars.
+    '''
+    self.syllabary_check = True
+    self.signs_in_syllabary()
+    for s_dict in self.syl_dict_lst:
+      print(s_dict)
 #
 # NOTE: this was meant to be part of a normalization line,
 # that is not finished:
 #
+##    if None not in s_dict_lst:
+##      sylb.check_sequence(s_dict_lst, self.sign_list)
 ##      if s_dict!=None:
 ##        self.normalize_with_syllabary(s_dict, [s['value'], index])
 ##
@@ -309,33 +323,22 @@ class transliteration:
       i+=1
 
   def set_sign_and_determinative_normalization(self):
-    # Special type of normalization for the purpuse of lemmatization testing:
-    # First non determinative sign and first determinative 
-    # in order of spelling, no index.
+    '''
+    Special type of normalization for the purpuse of lemmatization testing:
+      First non determinative sign and first determinative in order
+      of spelling, no index.
+    '''
+    self.first_sign = ''
     self.sign_and_det_normalization = ''
     assigned = [False, False]
     for s in self.sign_list:
       if 'det' not in s['type'] and assigned[0]==False:
         self.sign_and_det_normalization+=s['value']
+        self.first_sign = s['value']
         assigned[0] = True
       elif 'det' in s['type'] and assigned[1]==False:
         self.sign_and_det_normalization+=s['value']
         assigned[1] = True
-
-  def standardize_translit(self, translit):
-    '''
-    '''
-    std_dict = {'š':'c', 'ŋ':'j', '₀':'0', '₁':'1', '₂':'2',
-                '₃':'3', '₄':'4', '₅':'5', '₆':'6', '₇':'7',
-                '₈':'8', '₉':'9', '+':'-', 'Š':'C', 'Ŋ':'J',
-                '·':'', '°':'', 'sz': 'c', 'SZ': 'C',
-                'ʾ': "'"}
-    for key in std_dict.keys():
-      translit = translit.replace(key, std_dict[key])
-    times = re.compile(r'(?P<a>[\w])x(?P<b>[\w])')
-    if times.search(translit):
-      translit = times.sub('\g<a>×\g<b>', translit)
-    return translit
 
   def get_unicode_index(self, sign_dict):
     '''
@@ -358,7 +361,7 @@ class transliteration:
   def revert_unicode_index(self, u_sign):
     '''
     '''
-    vow_lst = ['a', 'A', 'e', 'E', 'i', 'I', 'u', 'U']    
+    vow_lst = ['a', 'A', 'e', 'E', 'i', 'I', 'u', 'U']
     i =0
     while i < len(u_sign):
       n = ord(u_sign[i])

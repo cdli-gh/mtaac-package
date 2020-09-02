@@ -2,19 +2,20 @@ import subprocess
 import codecs
 import json
 import os
+import re
 from urllib.request import urlopen
 from pathlib import Path
 from urllib.error import URLError
 import lxml
 from lxml import html as lxml_html
-# from multiprocessing import Pool
+from pathos.multiprocessing import ProcessingPool as Pool
 
 #---/ PATH variables /---------------------------------------------------------
 # 
 PATH_SRC = os.path.dirname(os.path.abspath(__file__))
 PATH_PROJECT = os.path.dirname(PATH_SRC)
-PATH_DATA = os.path.join(PATH_PROJECT, 'data')
-
+PATH_DATA = os.path.join(PATH_SRC, 'data')
+#
 #---/ CHECKS /-----------------------------------------------------------------
 #
 def is_int(char):
@@ -96,6 +97,65 @@ class common_functions:
     elif path:
       html = lxml_html.parse(path).getroot()
     return html
+
+  def get_filepaths(self, path, endswith=None):
+    '''
+    '''
+    paths_lst = []
+    for dirpath, dirnames, filenames in os.walk(path):
+      if endswith:
+        filenames = [f for f in filenames if f.endswith(endswith)]
+      for filename in filenames:
+        paths_lst.append((dirpath, filename))
+    return paths_lst
+
+  def create_dir(self, path):
+    '''
+    '''
+    try:
+      os.makedirs(path)
+    except FileExistsError:
+      pass
+
+  def mp_run(self, function, args_lst, processes=4):
+    """
+    Run class function as multiprocess.
+    Pass results through common variables.
+      - 'function': the functions.
+      - 'args_lst': arguments as a list of tuples.
+    """
+
+    args_lst_new = [function]
+    i = 0
+    if args_lst!=[]:
+      while i < len(args_lst[0]):
+        args_lst_new.append([x[i] for x in args_lst])
+        i+=1
+    print('multiprocessing:', function)
+    pool = Pool(processes)
+    results = pool.map(*args_lst_new)
+    return results
+
+  #---/ String standartization /-----------------------------------------------
+  #
+  def standardize_translit(self, translit):
+    '''
+    Function to standardize transliteration.
+    Used in:
+      - `CoNLL_file_parser.conll_file`
+      - `ATF_transliteration_parser.transliteration`
+    '''
+    std_dict = {'š':'c', 'ŋ':'j', '₀':'0', '₁':'1', '₂':'2',
+                '₃':'3', '₄':'4', '₅':'5', '₆':'6', '₇':'7',
+                '₈':'8', '₉':'9', '+':'-', 'Š':'C', 'Ŋ':'J',
+                '·':'', '°':'', 'sz': 'c', 'SZ': 'C',
+                'Sz': 'C', 'ʾ': "'", '’':"'"}
+    for key in std_dict.keys():
+      translit = translit.replace(key, std_dict[key])
+    times = re.compile(r'(?P<a>[\w])x(?P<b>[\w])')
+    if times.search(translit):
+      translit = times.sub('\g<a>×\g<b>', translit)
+    return translit
 
 #---/ SUBPROCESS /-------------------------------------------------------------
 #

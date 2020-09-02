@@ -1,4 +1,4 @@
-from mtaac_package.common_functions import *
+from .common_functions import *
 
 #
 #===/ DESCRIPTION /============================================================
@@ -97,6 +97,29 @@ class tags(common_functions):
     #ToDo: Ensure this line is everywhere elsewhere:
     self.all = sorted(self.all, key=lambda k: -len(k))
 
+  def adjust_POS(self, tag, src_convention, trg_convention='ORACC'):
+    #ToDo: Ensure the following function is so elsewhere:
+    '''
+    Strip and unify POS tag.
+    '''
+    # NOTE 'X', 'U', 'L', and 'MA' as POS tags (clarify!)
+    tag = tag.upper()
+    if ' ' in tag:
+      tag = tag.split(' ')[0]
+    for t in self.all:
+      for p in ['.', '/', ':']:
+        if '%s%s' %(t,p) in tag:
+          #print([t, self.convert(t, src_convention, trg_convention)])
+          t = t.split(p)[-1]
+          return self.convert(t, src_convention, trg_convention)
+    if tag not in self.all:
+      #print('Undefined %s tag escaped: %s' %(src_convention, tag))
+      return '_'
+    c_tag = self.convert(tag, src_convention, trg_convention)
+    if c_tag!='':
+      return c_tag
+    return tag
+
   def convert(self, tag, source, target):
     '''
     Recieve tag in one convention and return it in another, if exists.
@@ -113,68 +136,124 @@ class tags(common_functions):
     #print('No %s value found for %s tag: %s' %(target, source, tag))
     return tag
 
-  def adjust_POS(self, tag, src_convention, trg_convention='ORACC'):
-    #ToDo: Ensure the following function is so elsewhere:
+  def is_named_entity(self, tag):
     '''
-    Strip and unify POS tag.
+    Check if tag is named entity.
+    Return boolean.
     '''
-    # NOTE 'X', 'U', 'L', and 'MA' as POS tags (clarify!)
-    tag = tag.upper()
-    if ' ' in tag:
-      tag = tag.split(' ')[0]
-    for t in self.all:
-      for p in ['.', '/', ':']:
-        if '%s%s' %(t,p) in tag:
-          #print([t, self.convert(t, src_convention, trg_convention)])
-          return self.convert(t, src_convention, trg_convention)
-    if tag not in self.all:
-      #print('Undefined %s tag escaped: %s' %(src_convention, tag))
-      return '_'
-    c_tag = self.convert(tag, src_convention, trg_convention)
-    if c_tag!='':
-      return c_tag
-    return tag
-#
+    for k in self.named_entities_dict.keys():
+      if tag in self.named_entities_dict[k]:
+        return True
+    return False
+
 #---/ Converter /--------------------------------------------------------------
 #
-
 class morph_converter(common_functions):
   '''
   Converts different Sumerian annotation styles with dict. given above.
   MTAAC > ORACC: `self.MTAAC2ORACC()` with annotation str as argument.
   '''
-  datasets_lst = [
+  POS_TAGS_DICT = {
+    'NV2=STEM': 'NF.V',
+    'NV2=NAME': 'NE',
+    'V12=STEM': 'V'
+    }
+  STEM_SUFFIX_LIST = [
+    'PF',
+    'PL',
+    'RDP',
+    'PT'
+    ]
+  tags = tags()
+  datasets_lst_1 = [
     ('N', None),
     ('V', None),
     ('NV', None),
     ('NAMED_ENTITIES', None)
     ]
+  datasets_lst_2 = [
+    ('POS_dict', None)
+    ]
   
   def __init__(self):
-    self.load_json_sets(self.datasets_lst,
-                        path='json',
-                        prefix='ORACC_morph_annotation_',
-                        add=True)
+    '''
+    '''
+    
+    for (prefix, datasets) in [
+      ('ORACC_morph_annotation_', self.datasets_lst_1),
+      ('ORACC_ETCSL_UD_abbr_', self.datasets_lst_2)]:
+      self.load_json_sets(
+        datasets,
+        path='json',
+        prefix=prefix,
+        add=True)
 ##  # This is used to dump the datasets, if needed: 
 ##    self.dump_json_sets(self.datasets_lst,
 ##                        path='json',
 ##                        prefix='ORACC_morph_annotation_')
-    
+    self.EPOS_LIST = [self.POS_dict[k][0] for k in self.POS_dict.keys()
+                      if self.POS_dict[k][0]] + self.NAMED_ENTITIES
+
+  #---/ ORACC > MTAAC Converter /----------------------------------------------
+  #
+  def ORACC2MTAAC(self, m_str, POS=''):
+    '''
+    Convert ORACC morph. annotation style to MTAAC style.
+    Remove slot_labels.
+    '''
+    #ToDo: Add here STEM_SUFFIX_LIST functionality (!!!)
+    m_lst = []
+    for m in m_str.split('.'):      
+      pos_tags_lst = [k for k in self.POS_TAGS_DICT.keys() if k in m]
+      if pos_tags_lst:
+        _m = m
+        first_key = [k for k in self.POS_TAGS_DICT.keys() if k in m][0]
+        m = self.POS_TAGS_DICT[first_key]
+        if m=='NE' and POS:
+          # named_entities
+          m = POS
+        elif len(_m.split('-'))>1:
+          # stem-suffixes: dot-separated in MTAAC
+          m+='.%s' %'.'.join(_m.split('-')[1:])  
+      else:
+        if '=' in m:
+          m = m[m.find('=')+1:]
+        m = self.tags.convert(m, 'ORACC', 'MTAAC')
+      m_lst.append(m)
+    return '.'.join(m_lst)
+  
+  #---/ MTAAC > ORACC Converter /----------------------------------------------
+  #
   def MTAAC2ORACC(self, m_str):
     '''
     Convert MTAAC morph. annotation style to ORACC style.
     Shortcut for `self.add_slot_lables_to_abbr()`
     '''
     return self.add_slot_lables_to_abbr(m_str)
-
+  
   def add_slot_lables_to_abbr(self, m_str):
+    # Problems:
+    #
+    # 'XPOSTAG': 'NF.V.PT' > 'MORPH2': 'NV2=STEM.NV2=STEM'
+    # 'XPOSTAG': 'NF.V.RDP.PT.TERM' > 'MORPH2': 'NV2=STEM.NV2=STEM.NV2=STEM.N5=TERM'
+    # 'XPOSTAG': 'NF.V.PT.GEN.TERM' > 'MORPH2': 'NV2=STEM.NV2=STEM.N5=GEN.N5=TERM'
+    # 'XPOSTAG': 'MID.V.PL.3-SG-S' > 'MORPH2': 'V5=MID.V12=STEM.V12=STEM.V14=3-SG-S'
+    # 
+    # ToDo: check if remain!
     '''
     Add ORACC-style slots (N1=..., V1=..., NV11=...)
-    to MTAAC morph. annotation. 
+    to MTAAC morph. annotation.
+    Return [MORPH2, EPOS]. 
+
+    WARNING: does not convert abbr. from MTAAC to CoNLL.
+    use self.tags.convert(tag, source, target)
     '''
     [N, V, NV, NAMED_ENTITIES] = [self.N, self.V, self.NV, self.NAMED_ENTITIES]
     default_slot = ''
     m_lst = m_str.replace('’', "'").split('.')
+    EPOS = 'N'
+    if list(set(m_lst) & set(self.EPOS_LIST)):
+      EPOS = list(set(m_lst) & set(self.EPOS_LIST))[0]
     if 'NF' in m_lst:
       lst = NV+N
       m_lst = m_lst[1:]
@@ -182,21 +261,36 @@ class morph_converter(common_functions):
     elif 'V' not in m_lst:
       lst = N
       default_slot = 'N1=STEM'
-      if set(m_lst) & set(NAMED_ENTITIES):
+      if list(set(m_lst) & set(NAMED_ENTITIES)):
         default_slot = 'N1=NAME' 
     else:
       lst = V
       default_slot = 'V12=STEM'
+    return [self.build_labels(m_lst, default_slot, lst), EPOS]
+
+  def build_labels(self, m_lst, default_slot, lst):
+    '''
+    Subfunction of ´add_slot_lables_to_abbr´.
+    '''
+##    print(m_lst)
     m_lst_new = []
-    for m in m_lst:
+    i = 0
+    while i < len(m_lst):
+      m = m_lst[i]
       slot_m = ''
       for d in lst:
         if m in d['abbreviations']:
           slot_m = '%s=%s' %(d['slot'], m)
+##          print(d, slot_m)
           break
       if slot_m=='':
         slot_m = default_slot
+        if i+1 < len(m_lst):
+          if m_lst[i+1] in self.STEM_SUFFIX_LIST:
+            slot_m+='-%s'% m_lst[i+1]
+            i+=1
       m_lst_new.append(slot_m)
+      i+=1
     return '.'.join(m_lst_new)
 
 if __name__ == '__main__':

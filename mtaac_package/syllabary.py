@@ -1,7 +1,7 @@
 import os
 import re
 from lxml import etree
-from mtaac_package.common_functions import *
+from .common_functions import *
 #
 #===/ DESCRIPTION /============================================================
 #
@@ -73,7 +73,6 @@ class syllabary(common_functions):
   values, and others.
   '''
   SYLLABARY_PATH = os.path.join(PATH_DATA, 'xml', 'syllabary.xml')
-  re_index = re.compile(r'(?P<value>[^\d]+)(?P<index>\d+)')
   BASIC_XPATH_DICT = {
     'name': 'name/text()',
     'unicode': 'unicode/text()',
@@ -95,7 +94,7 @@ class syllabary(common_functions):
   datasets_lst = [
     ('NOT_IN_SYLLABARY', None),
     ('CORRECT_READING_DICT', None),
-    ('SPECIAL_SIGNS_DICT', None),
+    #('SPECIAL_SIGNS_DICT', None),
     ]
 
   def __init__(self):
@@ -103,22 +102,38 @@ class syllabary(common_functions):
                         path='json',
                         prefix='CL_syllabary_addendum_',
                         add=True)
-##  # This is used to dump the datasets, if needed: 
-##    self.dump_json_sets(self.datasets_lst,
-##                        path='json',
-##                        prefix='CL_syllabary_addendum_')
     self.norm_dict = {}
     #self.replaced_pairs = [] #for checking
     self.signs_lst = []
     self.load_all()
 
+  def dump_all_sets(self):
+    '''
+    Dump the JSON datasets, if needed
+    '''
+    self.dump_json_sets(self.datasets_lst,
+                        path='json',
+                        prefix='CL_syllabary_addendum_')
+
+  def find_entry_by_code(self, code):
+    '''
+    Find sign entry by Unicode sign code (U+....).
+    Return ´s_dict´ of sign.
+    '''
+    for s_dict in self.signs_lst:
+      if not s_dict['unicode']:
+        pass
+      elif code==s_dict['unicode']:
+        return s_dict
+    return None
+  
   def find_entry_by_name(self, name):
     '''
     Find sign entry by name.
     Return ´s_dict´ of sign.
     '''
-    if name.lower() in self.SPECIAL_SIGNS_DICT.keys():
-      name = self.SPECIAL_SIGNS_DICT[name]
+##    if name.lower() in self.SPECIAL_SIGNS_DICT.keys():
+##      name = self.SPECIAL_SIGNS_DICT[name]
     for s_dict in self.signs_lst:
       if s_dict['name']==None:
         #print(s_dict)
@@ -142,15 +157,14 @@ class syllabary(common_functions):
     if index=='x':
       index = 'ₓ'
     for s_dict in self.signs_lst:
-      if type(s_dict)!=dict:
-        print('S_dict issue:', s_dict, value, index)
       for v_dict in s_dict['values']:
         if atf==True:
-          sign_value = self.unicode_atf_converter(v_dict['value'],
-                                                  'u>a').lower()
+          sign_value = self.unicode_atf_converter(v_dict['value'],'u>a')\
+                       .lower()
         else:
           sign_value = v_dict['value'].lower()
-        if sign_value==value.lower() and str(v_dict['index'])==str(index):
+        if sign_value==value.lower() and \
+           (str(v_dict['index'])==str(index) or ')' in value):
           if index in ['ₓ']:
             x_index_lst.append(s_dict['name'])
           else:
@@ -228,49 +242,22 @@ class syllabary(common_functions):
     '''
     Quick patch to include some missing values.
     '''
-    for [s_str, name] in self.NOT_IN_SYLLABARY:
+    for [s_str, name, unicode, typ] in self.NOT_IN_SYLLABARY:
+      v_dict = self.get_v_dict(typ)
       s_str = self.unicode_atf_converter(s_str, 'a>u')
       s_dict = self.find_entry_by_name(name)
-      #NOTE THAT SOME MISSING VALUES ARE ACTUALLY SYLLABIC!
-      v_dict = {'type': 'logographic', 'main': None}
-      if s_dict!=None:
+      if not s_dict:
+        s_dict = self.find_entry_by_code(unicode)
+      if s_dict:
+        self.signs_lst.remove(s_dict)
         s_dict['values']+=[{**v_dict, **self.val_and_index(s_str)}]
       else:
-        s_dict = {'name': name,
-                  'values': [{**v_dict, **self.val_and_index(s_str)}],
-                  }
-        self.signs_lst.append(s_dict)
-
-  def val_and_index(self, s_str):
-    '''
-    Parse value and index in sign, return dict.
-    '''
-    value = s_str
-    index = 1
-    if 'ₓ' in s_str:
-      return {'value': s_str.strip('ₓ'),
-              'index': 'ₓ'}
-    elif self.re_index.search(s_str):
-      i = 0
-      for x in self.re_index.finditer(s_str):
-        if i==0:
-          value = x.groupdict()['value']
-          index = x.groupdict()['index']
-        else:
-          pass
-        i+=1
-    return {'index': int(index), 'value': value}
-
-  def stringify_index(self, index):
-    '''
-    Return value index as int., x or zero.
-    '''
-    index_str = ''
-    if index in ['ₓ']:
-      return index
-    if int(index) > 1:
-      index_str = str(index)
-    return index_str
+        s_dict = {
+          'name': name,
+          'values': [{**v_dict, **self.val_and_index(s_str)}],
+          'unicode': unicode
+          }
+      self.signs_lst.append(s_dict)
 
   def group_all_similar(self):
     '''
@@ -466,8 +453,12 @@ class syllabary(common_functions):
       'i': ['e'],
       'y': ['w', 'i', ''],
       'w': ['p', 'y', ''],
-      'n': ['ŋ'],
-      'g': ['ŋ'],
+      'b': ['p'],
+      'p': ['b'],
+      'n': ['ŋ', 'g', 'm'],
+      'g': ['ŋ', 'n', 'm'],
+      'm': ['ŋ', 'g', 'n'],
+      'ŋ': ['g', 'n', 'm'],
       'r': ['l'],
       'l': ['r'],
       'ʾ': ['']
@@ -496,7 +487,8 @@ class syllabary(common_functions):
 #---/ Unfinished normalization system /----------------------------------------
 '''
 # What's following (commented out) are probably parts of the unfinished
-#(and likely impossible) normalization system for sign values:
+# (and likely impossible - at least, when based solely on string similarity)
+# normalization system for sign values:
 '''
 
 ##  def check_sequence(self, s_dict_lst, sign_list):

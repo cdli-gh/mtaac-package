@@ -1,0 +1,11 @@
+Lemmatiser training+test
+
+fraction:10000/10000
+
+count:1/10000
+cutoff:0 #rules:5218 #same:9349 #ambiguous:143 143 5 #different:0      96.981328       1.483402       1.483402       0.051867       0.000000 (amb 291 all 9640 amb%       3.018672)
+cutoff:1 #rules:2246 #same:6729 #ambiguous:380 380 12 #different:2139      69.802905       3.941909       3.941909       0.124481      22.188797 (amb 999 all 9640 amb%      10.363071)
+cutoff:2 #rules:483 #same:5201 #ambiguous:258 217 3 #different:3961      53.952282       2.676349       2.251037       0.031120      41.089212 (amb 935 all 9640 amb%       9.699170)
+cutoff:3 #rules:311 #same:4878 #ambiguous:201 162 2 #different:4397      50.601660       2.085062       1.680498       0.020747      45.612033 (amb 815 all 9640 amb%       8.454357)
+cutoff:4 #rules:231 #same:4649 #ambiguous:206 171 5 #different:4609      48.226141       2.136929       1.773859       0.051867      47.811203 (amb 862 all 9640 amb%       8.941909)
+cutoff:5 #rules:186 #same:4471 #ambiguous:211 170 7 #different:4781      46.379668       2.188797       1.763485       0.072614      49.595436 (amb 926 all 9640 amb%       9.605809)

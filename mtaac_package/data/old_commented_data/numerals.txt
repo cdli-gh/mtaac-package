@@ -1,0 +1,103 @@
+𒐀	U+12400	two AŠ	002	2	2, = U+1212C
+𒐁	U+12401	three AŠ	004		3, EŠ6
+𒐂	U+12402	four AŠ	215	124,42	4, LIMMU2, LIMM2, TAB.TAB
+𒐃	U+12403	five AŠ	216		5, IA7, TAB.TAB.AŠ
+𒐄	U+12404	six AŠ	217		6, AŠ4, TAB.TAB.TAB
+𒐅	U+12405	seven AŠ	218		7, IMIN2, TAB.TAB.TAB.AŠ
+𒐆	U+12406	eight AŠ	219		8, USSU2, TAB.TAB.TAB.TAB
+𒐇	U+12407	nine AŠ	220		9, ILIMMU2, TAB.TAB.TAB.TAB.AŠ
+𒐈	U+12408	three DIŠ	834	593	180, EŠ5
+𒐉	U+12409	four DIŠ	851; 852; 853	316	240, ZA, LIMMU5, NIGIDALIMMU, = U+1235D
+𒐊	U+1240A	five DIŠ	861	598a	300, IA2
+𒐋	U+1240B	six DIŠ	862	598b	360, AŠ3
+𒐌	U+1240C	seven DIŠ	863	598c	420
+𒐍	U+1240D	eight DIŠ	864	598d	480
+𒐎	U+1240E	nine DIŠ			540
+𒐏	U+1240F	four U	713	474	40, NIMIN
+𒐐	U+12410	five U	714	475	50, NINNU
+𒐑	U+12411	six U	715	476	60
+𒐒	U+12412	seven U	716	477	70
+𒐓	U+12413	eight U	717	478	80
+𒐔	U+12414	nine U	718	479	90
+𒐕	U+12415	one GEŠ2			
+𒐖	U+12416	two GEŠ2			
+𒐗	U+12417	three GEŠ2			
+𒐘	U+12418	four GEŠ2			
+𒐙	U+12419	five GEŠ2			
+𒐚	U+1241A	six GEŠ2			
+𒐛	U+1241B	seven GEŠ2			
+𒐜	U+1241C	eight GEŠ2			
+𒐝	U+1241D	nine GEŠ2			
+𒐞	U+1241E	one GEŠU	824	534	GEŠ2.U; 600 or 70
+𒐟	U+1241F	two GEŠU			1200 or 80
+𒐠	U+12420	three GEŠU			1800 or 90
+𒐡	U+12421	four GEŠU			2400 or 100
+𒐢	U+12422	five GEŠU			3000 or 110
+𒐣	U+12423	two ŠAR2			
+𒐤	U+12424	three ŠAR2			
+𒐥	U+12425	three ŠAR2 variant form			
+𒐦	U+12426	four ŠAR2			
+𒐧	U+12427	five ŠAR2			
+𒐨	U+12428	six ŠAR2			
+𒐩	U+12429	seven ŠAR2			
+𒐪	U+1242A	eight ŠAR2			
+𒐫	U+1242B	nine ŠAR2			
+𒐬	U+1242C	one ŠARU	653	409	36,000
+𒐭	U+1242D	two ŠARU			72,000
+𒐮	U+1242E	three ŠARU			108,000
+𒐯	U+1242F	three ŠARU variant form			108,000
+𒐰	U+12430	four ŠARU			144,000
+𒐱	U+12431	five ŠARU			180,000
+𒐲	U+12432	ŠAR2 x GAL.DIŠ	651	408	216,000
+𒐳	U+12433	ŠAR2 x GAL.MIN	652	408	432,000
+𒐴	U+12434	one BURU	662	350,8	U gunû
+𒐵	U+12435	two BURU			
+𒐶	U+12436	three BURU			
+𒐷	U+12437	three BURU variant form			
+𒐸	U+12438	four BURU			
+𒐹	U+12439	five BURU			
+𒐺	U+1243A	EŠ16	505		3, = U+1203C
+𒐻	U+1243B	EŠ21	210		3
+𒐼	U+1243C	LIMMU	859; 860		4, NIG2, GAR, NINDA
+𒐽	U+1243D	LIMMU4	506		4
+𒐾	U+1243E				
+𒐿	U+1243F				
+𒑀	U+12440	AŠ9	536		6, EŠ16.EŠ16
+𒑁	U+12441	IMIN3	537		7, UMUN9
+𒑂	U+12442	IMIN	863		7
+𒑃	U+12443	IMIN variant form	866		7
+𒑄	U+12444	USSU	867		8
+𒑅	U+12445	USSU3	538		8
+𒑆	U+12446	ILIMMU	868		9
+𒑇	U+12447	ILIMMU3	539		9, EŠ16.EŠ16.EŠ16
+𒑈	U+12448	ILIMMU4	577		9
+𒑉	U+12449	DIŠ / DIŠ / DIŠ	865v		9
+𒑊	U+1244A	two AŠ tenû	593		
+𒑋	U+1244B	three AŠ tenû	629		
+𒑌	U+1244C	four AŠ tenû	854	379; 380	ZA tenû, ERIM tenû
+𒑍	U+1244D	five AŠ tenû			
+𒑎	U+1244E	six AŠ tenû			
+𒑏	U+1244F	one BAN2	122		= U+12047
+𒑐	U+12450	two BAN2			
+𒑑	U+12451	three BAN2			
+𒑒	U+12452	four BAN2			
+𒑓	U+12453	four BAN2 variant form			
+𒑔	U+12454	five BAN2			
+𒑕	U+12455	five BAN2 variant form			
+𒑖	U+12456	NIGIDAMIN	847, 848		
+𒑗	U+12457	NIGIDAEŠ	850		
+𒑘	U+12458	one EŠE3			= U+12041, U+12300
+𒑙	U+12459	two EŠE3			= U+12049
+𒑚	U+1245A	one third	826	571	ŠUŠANA
+𒑛	U+1245B	two thirds	832	572	
+𒑜	U+1245C	five sixths	838	573	KINGUSILA
+𒑝	U+1245D	one third variant form			
+𒑞	U+1245E	two thirds variant form			
+𒑟	U+1245F	one eighth			
+𒑠	U+12460	one quarter			
+𒑡	U+12461	Old Assyrian one sixth	630		Kültepe only
+𒑢	U+12462	Old Assyrian one quarter			
+𒑰	U+12470	Old Assyrian word divider			
+𒑱	U+12471	vertical colon	592		Glossenkeil
+𒑲	U+12472	diagonal colon	592		Glossenkeil
+𒑳	U+12473	diagonal tricolon			

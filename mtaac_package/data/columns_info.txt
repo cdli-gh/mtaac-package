@@ -1,0 +1,76 @@
+#
+#
+# Local: 'ID', 'WORD_RAW', 'BASE', 'SENSE', 'MORPH2', 'POS', 'SEGM', 'UNICODE'
+#
+#
+# ACTIONS:
+#
+# ID:
+#     Transformations:
+#       1. All: replace with plain numeration (+)
+#
+# FORM (WORD in ORACC):
+#     Transformations: 
+#       1. FORM (raw): escape unicode, use same symbols (+)
+#       2. FORM_NORM: list with normalizations (3 types) (+)
+# 
+# BASE (see SEGM in CDLI):
+#     Transformations: 
+#       1. CDLI: Extract data, create field (+)
+#
+# SENSE (see SEGM in CDLI):
+#     Transformations: 
+#       1. CDLI: Extract data, create field (+)
+#
+# MORPH2 (see XPOSTAG in CDLI)
+#       1. CDLI: add labels, create field (+)
+#
+# XPOSTAG (see MORPH2 & EPOS in ORACC)
+#       1. ORACC: Extract data, create field (?)
+#
+#
+#
+
+'''
+>>> CDLI <<<
+
+2. FORM: CDLI-ATF transliteration.
+    E.g. 'nam-szusz3-ta'.
+3. SEGM: normalization[sense][-omitted morphemes]-spelled morphemes.
+    E.g. 'namszusz[cattle-management][-ak]-ta'
+4. XPOSTAG: morph. annotation & segmentation, no labels.
+     E.g. 'N.GEN.ABL', 'PN' etc.
+5. HEAD: parent element or zero.
+    (empty).
+6. DEPREL: relation type.
+    (empty).
+7. MISC: comments.
+    (empty).
+
+>>> ORACC <<<
+
+2. WORD: ORACC-ATF transliteration.
+    E.g. 'ul-li₂-a-ta'.
+3. BASE: ORACC-ATF transliteration, base only
+    E.g. 'ul-li₂'.
+4. CF: base normalization, named entites start with capital.
+    E.g. 'ul', 'Enlil'
+5. EPOS: Part of speech of named entites abbreviation.
+    E.g. 'V/t', 'N', 'DN', 'RN' etc.
+6. FORM: WORD with elements of morph. annotation
+    E.g. 'kiš\gen\erg'.
+7. GW: translation.
+    E.g. 'person', '1' (for named entites).
+8. LANG: Language or other abberviation.
+    E.g. 'sux'.
+9. MORPH: Morphological segmentation with labels and morphemes.
+    E.g. 'N1=kiš.N5=ak.N5=ø'.
+10. MORPH2: Morphological segmentation with labels and abbreviations.
+    E.g. 'N1=STEM.N5=GEN.N5=ABS'
+11. NORM: MORPH without labels.
+    E.g. 'kiš.ak.ø'.
+12. EPOS: Same as GW.
+    E.g. 'V/t', 'N', 'DN', 'RN' etc.
+13. SENSE: Dict. entry, explanation.
+    E.g. '2nd king of dynasty of Agade', 'king', '1'. 
+'''  

@@ -4,8 +4,8 @@ import codecs
 import json
 import re
 from pathlib import Path
-from mtaac_package.translation import translation
-from mtaac_package.ATF_transliteration_parser import transliteration
+from .translation import translation
+from .ATF_transliteration_parser import transliteration
 
 class Object(object):
   pass
@@ -19,7 +19,7 @@ class atf_parser:
   '''
   re_brc = re.compile(r'(\(.+\))')
   re_translit_comment = re.compile(r'(( |-|)\(\$.+\$\)( |-|))')
-  
+
   def __init__(self, path='', filenames='', dest_path='', prefix=''):
     '''
     '''
@@ -31,8 +31,8 @@ class atf_parser:
         all_vars = False
         break
     if all_vars==True:
-      self.parse(path, filenames, dest_path, prefix) 
- 
+      self.parse(path, filenames, dest_path, prefix)
+
   def parse(self, path, filenames, dest_path, prefix):
     '''
     '''
@@ -146,6 +146,7 @@ class atf_parser:
     '''
     with codecs.open(filename, 'w', 'utf-8') as dump:
       dump.write(data)
+
 
 if __name__ == '__main__':
   pass

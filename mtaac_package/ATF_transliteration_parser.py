@@ -372,17 +372,6 @@ class transliteration(common_functions):
                 'index': index}
       i+=1
 
-  def stringify_index(self, index):
-    '''
-    Return value index as int., x or zero.
-    '''
-    index_str = ''
-    if index in ['x']:
-      return index
-    if int(index) > 1:
-      index_str = str(index)
-    return index_str
-
 # ToDo: this version should be merged with the one above.
 #       Make sure the translated scripts run well when testing.
 #

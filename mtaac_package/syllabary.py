@@ -45,6 +45,13 @@ Use function `LD()` to get levinstein distance.
   in class `syllabary` below.
 '''
 #
+#---/ RegEx Variables /--------------------------------------------------------
+#
+
+re_index = re.compile(r'(?P<value>[^\d]+)(?P<index>\d+)')
+re_index_num = re.compile(r'(?P<quantity>\d+)\((?P<value>[^\d]+)(?P<index>\d*)\)')
+
+#
 #---/ Levinstein Distance /----------------------------------------------------
 #
 def LD(s, t):
@@ -172,6 +179,56 @@ class syllabary(common_functions):
     if x_index_lst!=[]:
       return x_index_lst
     return None
+
+  def val_and_index(self, s_str):
+    '''
+    Parse value and index in sign, return dict.
+    '''
+    value = s_str
+    index = 1
+    quantity = None
+    modifier = None
+    if '(' in s_str or ')' in s_str:
+      print(s_str)
+    if re_index_num.search(s_str):
+      dic = [x for x in re_index_num.finditer(s_str)][0].groupdict()
+      value = dic['value']
+      quantity = dic['quantity']
+      if dic['index']:
+        index = dic['index']
+    elif 'ₓ' in s_str:
+      return {'value': s_str.strip('ₓ'),
+              'index': 'ₓ'}
+    elif re_index.search(s_str):
+      dic = [x for x in re_index.finditer(s_str)][0].groupdict()
+      value = dic['value']
+      index = dic['index']
+    if quantity:
+      #print(s_str, {'index': int(index), 'value': value, 'quantity': quantity})
+      return {'index': int(index), 'value': value, 'quantity': quantity}
+    return {'index': int(index), 'value': value}
+
+  def stringify_index(self, index):
+    '''
+    Return value index as int., x or zero.
+    '''
+    index_str = ''
+    if index in ['x']:
+      return index
+    if int(index) > 1:
+      index_str = str(index)
+    return index_str
+
+  def get_v_dict(self, typ):
+    '''
+    Returns value dict. for type.
+    '''
+    if typ=='l':
+      return {'type': 'logographic', 'main': None}
+    elif typ=='s':
+      return {'type': 'syllabic'}
+    elif typ=='n':
+      return {'type': 'numeral'}
 
   def unicode_atf_converter(self, value, direction='u>a'):
     '''

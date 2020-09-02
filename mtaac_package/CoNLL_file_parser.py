@@ -149,11 +149,17 @@ class conll_file(common_functions):
     if path:
       self.filename = os.path.basename(path)
       self.correct_format(path)
-      for c in self.corpus_conventions.keys():
-        if c in str(path):
-          self.corpus = c
-          self.convention = self.corpus_conventions[c]
-          break
+      else:
+        # try to get if from PATH
+        self.corpus = None
+        for c in self.corpus_conventions.keys():
+          if c in str(path):
+            self.corpus = c
+            self.convention = self.corpus_conventions[c]
+            break
+      if not self.corpus:
+        self.corpus = corpus
+        self.convention = self.corpus_conventions[corpus]
       with codecs.open(path, 'r', 'utf-8') as f:
         self.data = f.read()
     elif conll_str:
